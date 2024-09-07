@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="addQuiz">
-        <Link to="/">Add New Quiz</Link>
+        <Link to="/add-quiz">Add New Quiz</Link>
       </div>
       <QuizList />
     </div>

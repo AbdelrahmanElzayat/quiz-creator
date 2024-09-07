@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import "./AddQuiz.css";
 const AddQuiz = () => {
   return (
-    <div>AddQuiz</div>
-  )
-}
+    <div className="AddQuiz">
+      <h2>AddQuiz</h2>
+    </div>
+  );
+};
 
-export default AddQuiz
+export default AddQuiz;

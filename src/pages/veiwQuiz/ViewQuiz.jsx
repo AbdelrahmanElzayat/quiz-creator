@@ -4,10 +4,12 @@ import './ViewQuiz.css'
 import QuistionAnswer from "../../components/QuizDetails/QuistionAnswer";
 const ViewQuiz = () => {
   return (
-    <div className="ViewQuiz">
+    <>
       <QuizCard class={"view_card"}/>
+    <div className="ViewQuiz">
       <QuistionAnswer/>
     </div>
+    </>
   );
 };
 
