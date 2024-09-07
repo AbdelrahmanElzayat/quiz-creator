@@ -1,0 +1,44 @@
+.ViewQuiz{
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(184, 184, 184, 0.986);
+    padding: 12px 16px;
+}
+.quizBody {
+    margin-top: 20px;
+    padding-left: 40px;
+}
+.quizBody .questionBlock:not(:last-of-type){
+    border-bottom: 1px solid #ddd;
+}
+.questionBlock {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.answersList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 !important;
+}
+
+.answerItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.answerItem.correct {
+    color: #4caf50;
+    /* Green for correct answers */
+}
+
+.answerItem.incorrect {
+    color: #f44336;
+    /* Red for incorrect answers */
+}
+
+.answerItem svg {
+    margin-right: 10px;
+}
