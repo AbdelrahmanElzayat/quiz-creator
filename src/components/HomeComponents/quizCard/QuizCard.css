@@ -1,0 +1,77 @@
+/* .quizCard {} */
+
+.quizCard .quizHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+}
+.QuizScore{
+    color: green;
+    font-weight: bold;
+    font-size: 24px;
+}
+.QuizScore span{
+    color: #979797;
+}
+.quizCard .quizName {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quizName h3 {
+    font-size: 24px;
+    /* line-height: 1.5; */
+}
+
+.quizName p {
+    color: #555;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+.quizBody {
+    margin-top: 20px;
+    padding-left: 40px;
+}
+
+.questionBlock {
+    margin-bottom: 20px;
+}
+
+.answersList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 !important;
+}
+
+.answerItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.answerItem.correct {
+    color: #4caf50;
+    /* Green for correct answers */
+}
+
+.answerItem.incorrect {
+    color: #f44336;
+    /* Red for incorrect answers */
+}
+
+.answerItem svg {
+    margin-right: 10px;
+}
