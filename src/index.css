@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=El+Messiri:wght@400;500;600;700&display=swap');
+
 :root {
   --color-primary: #0A2B47;
   --color-secondary: #E3BF5C;
@@ -11,7 +13,7 @@
 }
 
 html {
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -19,7 +21,7 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;

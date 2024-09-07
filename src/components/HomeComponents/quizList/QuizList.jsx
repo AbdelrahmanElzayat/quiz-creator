@@ -5,6 +5,8 @@ const QuizList = () => {
   return (
     <div className='quizList'>
         <QuizCard/>
+        <QuizCard/>
+        <QuizCard/>
     </div>
   )
 }
