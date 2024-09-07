@@ -5,6 +5,7 @@ import NotFound from "./pages/not-found/NotFound";
 import LoadingPage from "./pages/LoadingPage";
 import MainLayout from "./components/Layouts/MainLayout";
 import ViewQuiz from "./pages/veiwQuiz/ViewQuiz";
+import AddQuiz from "./pages/add-quiz/AddQuiz";
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,6 +25,14 @@ function App() {
           element: (
             <Suspense fallback={<LoadingPage />}>
               <ViewQuiz />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/add-quiz",
+          element: (
+            <Suspense fallback={<LoadingPage />}>
+              <AddQuiz />
             </Suspense>
           ),
         },
