@@ -3,6 +3,8 @@ import { Formik, Field, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 
 import "./AddForm.css";
+import { addNewQuiz, setQuizzes } from "../../redux/QuizesReducer/quizzesSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 // Validation schema using Yup
 const QuizSchema = Yup.object().shape({
@@ -26,6 +28,9 @@ const QuizSchema = Yup.object().shape({
 });
 
 const AddForm = () => {
+  const dispatch = useDispatch();
+  const quizzes = useSelector((state) => state.quizzes);
+  console.log(quizzes);
   return (
     <Formik
       initialValues={{
@@ -43,6 +48,7 @@ const AddForm = () => {
       }}
       validationSchema={QuizSchema}
       onSubmit={(values) => {
+        dispatch(addNewQuiz(values));
         console.log("Quiz Data: ", values);
       }}
     >
