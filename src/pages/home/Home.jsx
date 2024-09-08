@@ -11,7 +11,12 @@ const Home = () => {
       <div className="addQuiz">
         <Link to="/add-quiz">Add New Quiz</Link>
       </div>
-      <QuizList data={quizzes}/>
+      {
+        quizzes && quizzes.length > 0 ?
+        <QuizList data={quizzes}/>
+        :
+        <h2 style={{textAlign:'center'}}>No added Quizes</h2>
+      }
     </div>
   );
 };

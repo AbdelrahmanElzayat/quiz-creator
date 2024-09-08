@@ -5,6 +5,8 @@ import { updateQuiz } from "../../redux/QuizesReducer/quizzesSlice";
 
 import "./EditForm.css";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // Validation schema using Yup
 const QuizSchema = Yup.object().shape({
   quizTitle: Yup.string().required("Quiz title is required"),
@@ -31,13 +33,15 @@ const QuizSchema = Yup.object().shape({
 });
 const EditForm = ({ quizValues }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={quizValues}
       validationSchema={QuizSchema}
       onSubmit={(values) => {
         dispatch(updateQuiz({ id: values.id, updatedQuiz: values }));
-        console.log("Quiz Data: ", values);
+        toast.success("Quiz Updated Successfully");
+        navigate(-1)
       }}
     >
       {({ values, errors, touched, isSubmitting }) => (
@@ -75,7 +79,7 @@ const EditForm = ({ quizValues }) => {
           <FieldArray name="questions">
             {({ push, remove }) => (
               <>
-                {values.questions.map((question, qIndex) => (
+                {values?.questions?.map((question, qIndex) => (
                   <div key={qIndex} className="questionGroup">
                     <div className="formGroup">
                       <label htmlFor={`questions.${qIndex}.question`}>
@@ -108,7 +112,7 @@ const EditForm = ({ quizValues }) => {
                       {errors.questions?.[qIndex]?.question &&
                       touched.questions?.[qIndex]?.question ? (
                         <div className="error">
-                          {errors.questions[qIndex].question}
+                          {errors.questions[qIndex]?.question}
                         </div>
                       ) : null}
                     </div>

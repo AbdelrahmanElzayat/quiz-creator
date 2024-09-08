@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import "./AddForm.css";
 import { addNewQuiz } from "../../redux/QuizesReducer/quizzesSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // Validation schema using Yup
 const QuizSchema = Yup.object().shape({
@@ -33,6 +35,7 @@ const QuizSchema = Yup.object().shape({
 
 const AddForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{
@@ -52,7 +55,9 @@ const AddForm = () => {
       validationSchema={QuizSchema}
       onSubmit={(values) => {
         dispatch(addNewQuiz({ ...values, id: crypto.randomUUID() }));
-        console.log("Quiz Data: ", values);
+        toast.success("Quiz Added Successfully");
+        navigate("/");
+        // console.log("Quiz Data: ", values);
       }}
     >
       {({ values, errors, touched, isSubmitting }) => (
@@ -139,12 +144,36 @@ const AddForm = () => {
                               >
                                 Answer {aIndex + 1}
                               </label>
-                              <Field
-                                name={`questions.${qIndex}.answers.${aIndex}.answerText`}
-                                type="text"
-                              />
+                              <div className="questionWrapper">
+                                <Field
+                                  name={`questions.${qIndex}.answers.${aIndex}.answerText`}
+                                  type="text"
+                                />
 
-                              <label className="correctAnswer" style={{fontSize:'14px'}}>
+                                <button
+                                  type="button"
+                                  className="iconButton"
+                                  onClick={() => removeAnswer(aIndex)}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                    // fill=""
+                                  >
+                                    <path
+                                      fill="#ee232f"
+                                      d="M9 3v1H4v2h16V4h-5V3H9zm-1 5v11h2V8H8zm4 0v11h2V8h-2zm4 0v11h2V8h-2zM6 8v11h2V8H6z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+
+                              <label
+                                className="correctAnswer"
+                                style={{ fontSize: "14px" }}
+                              >
                                 <Field
                                   type="radio"
                                   //   isCorrect
@@ -173,9 +202,7 @@ const AddForm = () => {
                           <button
                             type="button"
                             className="iconButton"
-                            onClick={() =>
-                              pushAnswer({ answerText: "", isCorrect: false })
-                            }
+                            onClick={() => pushAnswer({ answerText: "" })}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

@@ -95,7 +95,7 @@ const QuistionAnswer = ({ data }) => {
                 width="20px"
                 height="20px"
                 viewBox="0 0 64 64"
-                enable-background="new 0 0 64 64"
+                enableBackground="new 0 0 64 64"
                 fill="#000000"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -137,7 +137,7 @@ const QuistionAnswer = ({ data }) => {
                 width="20px"
                 height="20px"
                 viewBox="0 0 64 64"
-                enable-background="new 0 0 64 64"
+                enableBackground="new 0 0 64 64"
                 fill="#000000"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

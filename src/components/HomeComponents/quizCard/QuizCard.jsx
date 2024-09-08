@@ -81,7 +81,7 @@ const QuizCard = (props) => {
               </Link>
             )}
             {data?.url && (
-              <a href={data?.url} title="youtube">
+              <a href={data?.url} target="_blank" title="youtube">
                 <svg
                   width={24}
                   height={24}
