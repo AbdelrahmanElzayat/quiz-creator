@@ -6,6 +6,7 @@ import LoadingPage from "./pages/LoadingPage";
 import MainLayout from "./components/Layouts/MainLayout";
 import ViewQuiz from "./pages/veiwQuiz/ViewQuiz";
 import AddQuiz from "./pages/add-quiz/AddQuiz";
+import EditQuiz from "./pages/edit-quiz/EditQuiz";
 function App() {
   const router = createBrowserRouter([
     {
@@ -33,6 +34,14 @@ function App() {
           element: (
             <Suspense fallback={<LoadingPage />}>
               <AddQuiz />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/edit-quiz/:id",
+          element: (
+            <Suspense fallback={<LoadingPage />}>
+              <EditQuiz />
             </Suspense>
           ),
         },
