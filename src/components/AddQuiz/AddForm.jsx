@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const QuizSchema = Yup.object().shape({
   quizTitle: Yup.string().required("Quiz title is required"),
   description: Yup.string().required("Description is required"),
+  score: Yup.string().required("Score is required"),
   questions: Yup.array()
     .of(
       Yup.object().shape({
@@ -30,12 +31,13 @@ const QuizSchema = Yup.object().shape({
 const AddForm = () => {
   const dispatch = useDispatch();
   const quizzes = useSelector((state) => state.quizzes);
-  console.log(quizzes);
+  //   console.log(quizzes);
   return (
     <Formik
       initialValues={{
         quizTitle: "",
         description: "",
+        score: "",
         questions: [
           {
             question: "",
@@ -48,7 +50,7 @@ const AddForm = () => {
       }}
       validationSchema={QuizSchema}
       onSubmit={(values) => {
-        dispatch(addNewQuiz(values));
+        dispatch(addNewQuiz({...values, id:crypto.randomUUID()}));
         console.log("Quiz Data: ", values);
       }}
     >
@@ -67,6 +69,13 @@ const AddForm = () => {
             <Field name="description" as="textarea" />
             {errors.description && touched.description ? (
               <div className="error">{errors.description}</div>
+            ) : null}
+          </div>
+          <div className="formGroup">
+            <label htmlFor="score">Score</label>
+            <Field name="score" type="text" />
+            {errors.score && touched.score ? (
+              <div className="error">{errors.score}</div>
             ) : null}
           </div>
 

@@ -13,6 +13,5 @@ const quizzesSlice = createSlice({
   },
 });
 
-// استخراج الريديوسرز والإكشنز
 export const { addNewQuiz } = quizzesSlice.actions;
 export default quizzesSlice.reducer;

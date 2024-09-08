@@ -1,14 +1,14 @@
-import React from 'react'
-import QuizCard from '../quizCard/QuizCard'
-import './QuizList.css'
-const QuizList = () => {
+import React from "react";
+import QuizCard from "../quizCard/QuizCard";
+import "./QuizList.css";
+const QuizList = ({data}) => {
   return (
     <div className="quizList">
-      <QuizCard class={"mainCard"} />
-      <QuizCard class={"mainCard"} />
-      <QuizCard class={"mainCard"} />
+      {data?.map((item) => (
+        <QuizCard data={item} class={"mainCard"} />
+      ))}
     </div>
   );
-}
+};
 
-export default QuizList
+export default QuizList;
