@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik, Field, Form, FieldArray } from "formik";
 import * as Yup from "yup";
+import { updateQuiz } from "../../redux/QuizesReducer/quizzesSlice";
 
 import "./EditForm.css";
-
+import { useDispatch } from "react-redux";
 // Validation schema using Yup
 const QuizSchema = Yup.object().shape({
   quizTitle: Yup.string().required("Quiz title is required"),
@@ -29,11 +30,13 @@ const QuizSchema = Yup.object().shape({
     .min(1, "At least one question is required"),
 });
 const EditForm = ({ quizValues }) => {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={quizValues}
       validationSchema={QuizSchema}
       onSubmit={(values) => {
+        dispatch(updateQuiz({ id: values.id, updatedQuiz: values }));
         console.log("Quiz Data: ", values);
       }}
     >
