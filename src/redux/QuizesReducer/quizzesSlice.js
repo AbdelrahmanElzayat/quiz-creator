@@ -10,6 +10,7 @@ const quizzesSlice = createSlice({
       state.push(action.payload);
       localStorage.setItem("quizzesData", JSON.stringify(state));
     },
+    
   },
 });
 
