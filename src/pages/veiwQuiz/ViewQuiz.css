@@ -42,3 +42,12 @@
 .answerItem svg {
     margin-right: 10px;
 }
+.feeddback{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.feeddback span{
+    font-weight: 700;
+}

@@ -10,10 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 const QuizSchema = Yup.object().shape({
   quizTitle: Yup.string().required("Quiz title is required"),
   description: Yup.string().required("Description is required"),
-  score: Yup.string().required("Score is required"),
+  score: Yup.number().required("Score is required"),
+  url: Yup.string().required("url is required"),
   questions: Yup.array()
     .of(
       Yup.object().shape({
+        feedback_true: Yup.string().required("feedback_true is required"),
+        feedback_false: Yup.string().required("feedback_false is required"),
         question: Yup.string().required("Question is required"),
         answers: Yup.array()
           .of(
@@ -38,19 +41,19 @@ const AddForm = () => {
         quizTitle: "",
         description: "",
         score: "",
+        url: "",
         questions: [
           {
             question: "",
-            answers: [
-              { answerText: "", isCorrect: false },
-              { answerText: "", isCorrect: false },
-            ],
+            feedback_true: "",
+            feedback_false: "",
+            answers: [{ answerText: "" }, { answerText: "" }],
           },
         ],
       }}
       validationSchema={QuizSchema}
       onSubmit={(values) => {
-        dispatch(addNewQuiz({...values, id:crypto.randomUUID()}));
+        dispatch(addNewQuiz({ ...values, id: crypto.randomUUID() }));
         console.log("Quiz Data: ", values);
       }}
     >
@@ -76,6 +79,13 @@ const AddForm = () => {
             <Field name="score" type="text" />
             {errors.score && touched.score ? (
               <div className="error">{errors.score}</div>
+            ) : null}
+          </div>
+          <div className="formGroup">
+            <label htmlFor="url">url</label>
+            <Field name="url" type="url" />
+            {errors.url && touched.url ? (
+              <div className="error">{errors.url}</div>
             ) : null}
           </div>
 
@@ -110,7 +120,6 @@ const AddForm = () => {
                               d="M9 3v1H4v2h16V4h-5V3H9zm-1 5v11h2V8H8zm4 0v11h2V8h-2zm4 0v11h2V8h-2zM6 8v11h2V8H6z"
                             />
                           </svg>
-                          {/* أيقونة الحذف */}
                         </button>
                       </div>
                       {errors.questions?.[qIndex]?.question &&
@@ -128,6 +137,7 @@ const AddForm = () => {
                             <div key={aIndex} className="formGroup">
                               <label
                                 htmlFor={`questions.${qIndex}.answers.${aIndex}.answerText`}
+                                style={{ fontSize: "14px" }}
                               >
                                 Answer {aIndex + 1}
                               </label>
@@ -135,11 +145,16 @@ const AddForm = () => {
                                 name={`questions.${qIndex}.answers.${aIndex}.answerText`}
                                 type="text"
                               />
-                              <label className="correctAnswer">
+
+                              <label className="correctAnswer" style={{fontSize:'14px'}}>
                                 <Field
                                   type="radio"
+                                  //   isCorrect
+                                  //   name={`questions.${qIndex}.answers.${aIndex}.isCorrect`}
                                   name={`questions.${qIndex}.correctAnswer`}
+                                  // checked={false}
                                   value={aIndex.toString()} // Ensure single selection
+                                  //   value={"true"} // Ensure single selection
                                 />
                                 Correct Answer
                               </label>
@@ -182,6 +197,41 @@ const AddForm = () => {
                         </>
                       )}
                     </FieldArray>
+
+                    <div className="formGroup" style={{ marginTop: "20px" }}>
+                      <label htmlFor={`questions.${qIndex}.feedback_true`}>
+                        feedback true
+                      </label>
+                      <div className="questionWrapper">
+                        <Field
+                          name={`questions.${qIndex}.feedback_true`}
+                          type="text"
+                        />
+                      </div>
+                      {errors.questions?.[qIndex]?.feedback_true &&
+                      touched.questions?.[qIndex]?.feedback_true ? (
+                        <div className="error">
+                          {errors.questions[qIndex].feedback_true}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="formGroup">
+                      <label htmlFor={`questions.${qIndex}.feedback_false`}>
+                        feedback false
+                      </label>
+                      <div className="questionWrapper">
+                        <Field
+                          name={`questions.${qIndex}.feedback_false`}
+                          type="text"
+                        />
+                      </div>
+                      {errors.questions?.[qIndex]?.feedback_false &&
+                      touched.questions?.[qIndex]?.feedback_false ? (
+                        <div className="error">
+                          {errors.questions[qIndex].feedback_false}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 ))}
 
